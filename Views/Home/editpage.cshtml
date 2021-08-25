@@ -1,0 +1,23 @@
+﻿@model IEnumerable<MVCCRUD.Models.Users>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@foreach(var list in Model)
+{
+<form action="@Url.Action("UpdateUser")" method="post">
+    <input type="hidden" name="id" value="@Html.DisplayFor(modelItem => list.id)" />
+    <input type="text" name="fname" placeholder="Enter Your FirstName" value="@Html.DisplayFor(modelItem => list.fname)" />
+    <input type="text" name="lname" placeholder="Enter Your LastName" value="@Html.DisplayFor(modelItem => list.lname)" />
+    <input type="text" name="email" placeholder="Enter Your Email" value="@Html.DisplayFor(modelItem => list.email)" />
+    <input type="text" name="city" placeholder="Enter Your City" value="@Html.DisplayFor(modelItem => list.city)" />
+    <input type="text" name="address" placeholder="Enter Your Address" value="@Html.DisplayFor(modelItem => list.address)" />
+    <input type="submit" value="Update" />
+</form>
+
+
+}
+
+
+

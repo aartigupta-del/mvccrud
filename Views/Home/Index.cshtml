@@ -1,0 +1,89 @@
+﻿@model IEnumerable<MVCCRUD.Models.Users>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <form action="@Url.Action("RegisterUser")" method="post">
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputEmail5">Firstname</label>
+                <input type="text" name="fname" class="form-control" placeholder="Enter Your FirstName" />
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputEmail6">Lastname</label>
+                <input type="text" name="lname" class="form-control" placeholder="Enter Your LastName" />
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Email</label>
+                <input type="text" name="email" class="form-control" placeholder="Enter Your Email" />
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputCity">City</label>
+                <input type="text" class="form-control" name="city" placeholder="Enter City">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Email</label>
+                <input type="text" name="email" class="form-control" placeholder="Enter Your Email" />
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputCity">City</label>
+                <input type="text" class="form-control" name="city" placeholder="Enter City">
+            </div>
+        </div>
+        <div class="form-row">
+            <label for="inputAddress">Address</label>
+            <textarea class="form-control" placeholder="Enter Your Address" name="address" rows="3"></textarea>
+        </div>
+        <div class="form-row  mt-2">
+            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+        </div>
+    </form>
+        </div>
+    
+
+    @*<form action="@Url.Action("RegisterUser")" method="post">
+
+        <input type="text" name="fname" placeholder="Enter Your FirstName" />
+        <input type="text" name="lname" placeholder="Enter Your LastName" />
+        <input type="text" name="email" placeholder="Enter Your Email" />
+        <input type="text" name="city" placeholder="Enter Your City" />
+        <input type="text" name="address" placeholder="Enter Your Address" />
+        <input type="submit" value="Submit" />
+    </form>*@
+    
+
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Fname</th>
+        <th>Lname</th>
+        <th>Email</th>
+        <th>City</th>
+        <th>Address</th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var list in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => list.id)</td>
+            <td>@Html.DisplayFor(modelItem => list.fname)</td>
+            <td>@Html.DisplayFor(modelItem => list.lname)</td>
+            <td>@Html.DisplayFor(modelItem => list.email)</td>
+            <td>@Html.DisplayFor(modelItem => list.city)</td>
+            <td>@Html.DisplayFor(modelItem => list.address)</td>
+            <td><a href="@Url.Action("editpage","Home", new {edit = list.id})"><i class="bi bi-pencil-square"></i></a><a href="@Url.Action("Delete_User","Home", new {id = list.id})"><i class="bi bi-trash-fill"></i></a></td>
+        </tr>
+    }
+
+
+</table>
+

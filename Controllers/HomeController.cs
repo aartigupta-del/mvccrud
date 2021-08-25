@@ -92,6 +92,65 @@ namespace MVCCRUD.Controllers
 
             return null;
         }
+        [HttpPost]
+        public JsonResult InsertAPI(Users user)
+        {
 
+            UserService us = new UserService();
+            int status = us.insertuserService(user);
+            if (status > 0)
+            {
+                return Json(new { success="200", message="success"}, JsonRequestBehavior.AllowGet);
+
+            }
+            else
+            {
+                return Json(new { success = "400", message = "fail" }, JsonRequestBehavior.AllowGet);
+            }
+            //return Json("Hello", JsonRequestBehavior.AllowGet);
+        }
+        [HttpGet]
+        public JsonResult getUsersAPI()
+        {
+            UserService us = new UserService();
+            List<Users> userlist = us.getAllUSersList();
+            //return View(userlist);
+            return Json(userlist, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+        [HttpPost]
+        public JsonResult getuserdeleteAPI(string id)
+        {
+            UserService us = new UserService();
+            int status = us.DeleteUserserviceData(id);
+            if (status > 0)
+            {
+                return Json(new { success = "200", message = "success" }, JsonRequestBehavior.AllowGet);
+
+            }
+            else
+            {
+                return Json(new { success = "400", message = "fail" }, JsonRequestBehavior.AllowGet);
+            }
+
+        }
+        [HttpPost]
+        public JsonResult getuserdataupdate(Users user)
+        {
+            UserService us = new UserService();
+            int status = us.UpdateUserserviceData(user);
+            if (status > 0)
+            {
+                return Json(new { success = "200", message = "success" }, JsonRequestBehavior.AllowGet);
+
+            }
+            else
+            {
+                return Json(new { success = "400", message = "fail" }, JsonRequestBehavior.AllowGet);
+            }
+
+        }
     }
 }

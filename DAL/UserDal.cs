@@ -38,7 +38,7 @@ namespace MVCCRUD.DAL
         public List<Users> getAllUSersList()
         {
 
-         string sql = "select id,firstname,lastname,email,city,address from users1 where active='Y'";
+         string sql = "select id,firstname,lastname,email,city,address,active from users1 where active='Y'";
             List<Users> userlist = new List<Users>();
             using (SqlConnection conn = new SqlConnection(strcon))
             {
@@ -60,6 +60,7 @@ namespace MVCCRUD.DAL
                                 users.email = dr[3].ToString();
                                 users.city = dr[4].ToString();
                                 users.address = dr[5].ToString();
+                                users.active = dr[6].ToString();
                                 userlist.Add(users);
                             }
                         }
@@ -74,7 +75,7 @@ namespace MVCCRUD.DAL
 
         public List<Users> getUserbyId(string edit)
         {
-            string sql = "select  id, firstname, lastname, email, city, address from users1  where id = '" +edit+ "' ";
+            string sql = "select  id, firstname, lastname, email, city, address , active  from users1  where id = '" + edit+ "' ";
             List<Users> singlelist = new List<Users>();
             using (SqlConnection conn = new SqlConnection(strcon))
             {
